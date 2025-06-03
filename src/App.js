@@ -21,7 +21,7 @@ function App() {
       <main className="flex-grow container mx-auto px-4 py-6">
         <Routes>
           {/* Public Route */}
-          {/* <Route path="/login" element={user ? <Navigate to="/" /> : <Login />} />*/}
+          <Route path="/login" element={user ? <Navigate to="/" /> : <Login />} />
 
           {/* All protected routes */}
           <Route
@@ -81,7 +81,7 @@ function App() {
             }
           />
           {/* Catch‐all: redirect to dashboard */}
-          {/*<Route path="*" element={<Navigate to={user ? '/' : '/login'} />} />*/}
+          <Route path="*" element={<Navigate to={user ? '/' : '/login'} />} />
         </Routes>
       </main>
       {user && <Footer />}
