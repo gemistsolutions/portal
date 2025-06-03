@@ -14,8 +14,8 @@ import { AuthContext } from './auth/AuthContext'
 import ProtectedRoute from './auth/ProtectedRoute'
 
 function App() {
-  const { user } = useContext(AuthContext)
-
+  //const { user } = useContext(AuthContext)
+  const user = true
   return (
     <div className="flex flex-col min-h-screen">
       {user && <Navbar />}
