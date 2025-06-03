@@ -15,7 +15,7 @@ function OverviewTiles() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
       {/* Drivers Tile */}
-      <div className="bg-white shadow-sm rounded-2xl p-4 flex flex-col justify-between">
+      <div className="bg-white shadow-lg rounded-2xl p-4 flex flex-col justify-between">
         <div>
           <h2 className="text-lg font-semibold mb-2">Drivers</h2>
           <p className="text-2xl font-bold">{drivers.total}</p>
@@ -32,7 +32,7 @@ function OverviewTiles() {
       </div>
 
       {/* Vehicles Tile */}
-      <div className="bg-white shadow-sm rounded-2xl p-4 flex flex-col justify-between">
+      <div className="bg-white shadow-lg rounded-2xl p-4 flex flex-col justify-between">
         <div>
           <h2 className="text-lg font-semibold mb-2">Vehicles</h2>
           <p className="text-2xl font-bold">{vehicles.total}</p>
@@ -49,7 +49,7 @@ function OverviewTiles() {
       </div>
 
       {/* Upcoming Expirations Tile */}
-      <div className="bg-white shadow-sm rounded-2xl p-4 flex flex-col justify-between">
+      <div className="bg-white shadow-lg rounded-2xl p-4 flex flex-col justify-between">
         <div>
           <h2 className="text-lg font-semibold mb-2">Upcoming Expirations</h2>
           {expirations.slice(0, 2).map((exp, idx) => (
@@ -67,7 +67,7 @@ function OverviewTiles() {
       </div>
 
       {/* Recent Alerts Tile */}
-      <div className="bg-white shadow-sm rounded-2xl p-4 flex flex-col justify-between">
+      <div className="bg-white shadow-lg rounded-2xl p-4 flex flex-col justify-between">
         <div>
           <h2 className="text-lg font-semibold mb-2">Recent Alerts</h2>
           {alerts.slice(0, 2).map((alert, idx) => (
