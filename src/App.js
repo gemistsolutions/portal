@@ -14,8 +14,7 @@ import { AuthContext } from './auth/AuthContext'
 import ProtectedRoute from './auth/ProtectedRoute'
 
 function App() {
-  //const { user } = useContext(AuthContext)
-  const user = true
+  const { user } = useContext(AuthContext)
   return (
     <div className="flex flex-col min-h-screen">
       {user && <Navbar />}
@@ -82,7 +81,7 @@ function App() {
             }
           />
           {/* Catch‐all: redirect to dashboard */}
-          <Route path="*" element={<Navigate to={user ? '/' : '/login'} />} />
+          {/*<Route path="*" element={<Navigate to={user ? '/' : '/login'} />} />*/}
         </Routes>
       </main>
       {user && <Footer />}
