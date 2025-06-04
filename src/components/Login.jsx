@@ -13,7 +13,8 @@ function Login() {
     e.preventDefault()
     setError(null)
     try {
-      await login(email, password)
+      // “login” expects an object { email, password } under the new Firebase setup
+      await login({ email, password })
       navigate('/')
     } catch (err) {
       setError('Invalid credentials')

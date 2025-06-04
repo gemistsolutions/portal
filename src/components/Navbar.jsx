@@ -14,6 +14,7 @@ function Navbar() {
     navigate('/login')
   }
 
+  console.log(user)
   return (
     <nav className="bg-white shadow-sm">
       <div className="container mx-auto px-4 py-3 flex items-center justify-between">
@@ -76,7 +77,7 @@ function Navbar() {
           {/* Profile dropdown */}
           <Menu as="div" className="relative inline-block text-left">
             <Menu.Button className="inline-flex justify-center w-full px-3 py-1 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50">
-              <span className="uppercase text-sm">{user.firstName.charAt(0)}</span>
+              <span className="uppercase text-sm">{user.email.charAt(0)}</span>
               <ChevronDown className="ml-1 h-4 w-4" />
             </Menu.Button>
             <Transition

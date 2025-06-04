@@ -8,6 +8,16 @@ function DocumentsPage() {
   const filterParam = searchParams.get('filter') || ''
   const [showUpload, setShowUpload] = useState(false)
 
+  // A “refreshKey” that we bump whenever a new document is uploaded,
+  // so that DocumentTable re-fetches from Firestore.
+  const [refreshKey, setRefreshKey] = useState(0)
+
+  function handleUploaded() {
+    // After UploadModal finishes uploading, bump refreshKey & close modal
+    setRefreshKey(prev => prev + 1)
+    setShowUpload(false)
+  }
+
   return (
     <div>
       <div className="flex items-center justify-between mb-6">
@@ -19,8 +29,14 @@ function DocumentsPage() {
           Upload New Document
         </button>
       </div>
-      <DocumentTable filter={filterParam} />
-      {showUpload && <UploadModal onClose={() => setShowUpload(false)} />}
+      {/* Pass filter and refreshKey into DocumentTable */}
+      <DocumentTable filter={filterParam} refreshKey={refreshKey} />
+      {showUpload && (
+        <UploadModal
+          onClose={() => setShowUpload(false)}
+          onUploaded={handleUploaded}
+        />
+      )}
     </div>
   )
 }

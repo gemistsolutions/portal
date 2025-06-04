@@ -1,45 +1,63 @@
-import React, { createContext, useState, useEffect } from 'react'
+// src/auth/AuthContext.js
+import React, { createContext, useState, useEffect } from "react";
+import { auth } from "../Firebase"; // ← our firebase.js export
+import {
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  signOut,
+} from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 
-// We’ll mock the authentication flow for now.
-// In a real app, you’d call an API to log in/out and store tokens.
-
-export const AuthContext = createContext()
+export const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
-  // user = null means not logged in. Otherwise, it's an object like { email, companyName, firstName }
-  const [user, setUser] = useState(null)
+  const navigate = useNavigate();
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-  // On mount, check localStorage for a “token” and parse the user
+  // 1) Listen for Firebase auth state changes on mount:
   useEffect(() => {
-    const token = localStorage.getItem('token')
-    const userData = localStorage.getItem('user')
-    if (token && userData) {
-      setUser(JSON.parse(userData))
-    }
-  }, [])
+    const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
+      if (firebaseUser) {
+        // firebaseUser is an object: { uid, email, etc. }
+        setUser(firebaseUser);
+      } else {
+        setUser(null);
+      }
+      setLoading(false);
+    });
+    return () => unsubscribe();
+  }, []);
 
-  function login(email, password) {
-    // Mock: accept any email/password. In a real app, POST to /api/auth/login
-    const fakeUser = {
-      email,
-      firstName: 'Bob',
-      companyName: 'ACME Trucking'
-    }
-    localStorage.setItem('token', 'fake-jwt-token')
-    localStorage.setItem('user', JSON.stringify(fakeUser))
-    setUser(fakeUser)
-    return Promise.resolve(true)
+  // 2) login() calls Firebase's signInWithEmailAndPassword:
+  function login({ email, password }) {
+    // Returns a Promise so Login.js can handle .catch
+    return signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // userCredential.user is the logged-in user
+        setUser(userCredential.user);
+        return userCredential.user;
+      });
   }
 
+  // 3) logout() calls Firebase's signOut():
   function logout() {
-    localStorage.removeItem('token')
-    localStorage.removeItem('user')
-    setUser(null)
+    return signOut(auth).then(() => {
+      setUser(null);
+      navigate("/login");
+    });
   }
 
+  const value = {
+    user,
+    login,
+    logout,
+  };
+
+  // 4) While Firebase initializes (checking localStorage/session), block rendering:
   return (
-    <AuthContext.Provider value={{ user, login, logout }}>
-      {children}
+    <AuthContext.Provider value={value}>
+      {!loading && children}
     </AuthContext.Provider>
-  )
+  );
 }
