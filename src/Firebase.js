@@ -9,7 +9,7 @@ import { getFirestore } from "firebase/firestore"
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyBFb5QwLmBmMHYQsOCaAmdF1TAr-GT1kgI",
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
   authDomain: "gemist-solutions.firebaseapp.com",
   projectId: "gemist-solutions",
   storageBucket: "gemist-solutions.firebasestorage.app",
@@ -17,7 +17,6 @@ const firebaseConfig = {
   appId: "1:785035861401:web:0aa735ab8741622d16c708",
   measurementId: "G-9LFEXBT2MK"
 };
-
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
