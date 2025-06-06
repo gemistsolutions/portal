@@ -24,7 +24,7 @@ function OverviewTiles() {
           </p>
         </div>
         <Link
-          to="/documents?filter=driver"
+          to="/drivers"
           className="text-sm text-primary mt-3 hover:underline"
         >
           View Drivers →

@@ -31,6 +31,29 @@ function Navbar() {
           >
             Dashboard
           </NavLink>
+          
+          <NavLink
+            to="/drivers"
+            className={({ isActive }) =>
+              isActive
+                ? 'text-primary font-medium'
+                : 'text-gray-600 hover:text-primary'
+            }
+          >
+            Drivers
+          </NavLink>
+
+          <NavLink
+            to="/vehicles"
+            className={({ isActive }) =>
+              isActive
+                ? 'text-primary font-medium'
+                : 'text-gray-600 hover:text-primary'
+            }
+          >
+            Vehicles
+          </NavLink>
+
           <NavLink
             to="/documents"
             className={({ isActive }) =>
@@ -51,6 +74,18 @@ function Navbar() {
           >
             Tasks
           </NavLink>
+
+          <NavLink
+            to="/auditprep"
+            className={({ isActive }) =>
+              isActive
+                ? 'text-primary font-medium'
+                : 'text-gray-600 hover:text-primary'
+            }
+          >
+            Audit Prep
+          </NavLink>
+
           <NavLink
             to="/support"
             className={({ isActive }) =>
@@ -94,9 +129,8 @@ function Navbar() {
                     {({ active }) => (
                       <button
                         onClick={() => navigate('/profile')}
-                        className={`${
-                          active ? 'bg-gray-100' : ''
-                        } w-full px-2 py-1 text-left text-gray-700`}
+                        className={`${active ? 'bg-gray-100' : ''
+                          } w-full px-2 py-1 text-left text-gray-700`}
                       >
                         My Profile
                       </button>
@@ -108,9 +142,8 @@ function Navbar() {
                     {({ active }) => (
                       <button
                         onClick={() => navigate('/profile/notifications')}
-                        className={`${
-                          active ? 'bg-gray-100' : ''
-                        } w-full px-2 py-1 text-left text-gray-700`}
+                        className={`${active ? 'bg-gray-100' : ''
+                          } w-full px-2 py-1 text-left text-gray-700`}
                       >
                         Notifications
                       </button>
@@ -122,9 +155,8 @@ function Navbar() {
                     {({ active }) => (
                       <button
                         onClick={handleLogout}
-                        className={`${
-                          active ? 'bg-gray-100' : ''
-                        } w-full px-2 py-1 text-left text-gray-700`}
+                        className={`${active ? 'bg-gray-100' : ''
+                          } w-full px-2 py-1 text-left text-gray-700`}
                       >
                         Logout
                       </button>
