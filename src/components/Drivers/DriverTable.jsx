@@ -1,7 +1,8 @@
-import React, { useState, useEffect, EmptyState} from 'react'
+import React, { useState, useEffect} from 'react'
 import { Dialog } from '@headlessui/react'
 import { formatDate } from '../../utils/formatDate'
 import {  X } from 'lucide-react'
+import { EmptyState } from '../../utils/EmptyState'
 
 export function DriverTable({ onUpdated }) {
     const [rows, setRows]   = useState(null)   // null = loading; [] = empty
