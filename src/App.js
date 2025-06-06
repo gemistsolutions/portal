@@ -80,22 +80,15 @@ function App() {
             }
           />
 
-          {!user.admin && <Route
+          <Route
             path="/support"
             element={
               <ProtectedRoute>
                 <SupportPage />
               </ProtectedRoute>
             }
-          />}
-          {user.admin && <Route
-            path="/inbox"
-            element={
-              <ProtectedRoute>
-                <AdminInbox />
-              </ProtectedRoute>
-            }
-          />}
+          />
+          
           <Route
             path="/resources"
             element={
